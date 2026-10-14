@@ -21,22 +21,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-          cache-dependency-path: quality-lab1/package-lock.json
 
       - name: Install dependencies
-        working-directory: quality-lab1
         run: npm ci
 
       - name: Lint
-        working-directory: quality-lab1
         run: npm run lint
 
       - name: Format check
-        working-directory: quality-lab1
         run: npm run format:check
 
       - name: Tests with coverage
-        working-directory: quality-lab1
         run: npm run test:coverage -- --run
 
       - name: Upload coverage report
@@ -44,5 +39,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-node-${{ matrix.node-version }}
-          path: quality-lab1/coverage/
+          path: coverage/
           if-no-files-found: ignore
